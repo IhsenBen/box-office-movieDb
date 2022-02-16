@@ -10,7 +10,7 @@ const useData = () => {
 
 
   // Getting the states from the api/useFetch 
-  const { isLoading, isError, errorMsg, data, genres } = state;
+  const { data, genres } = state;
 
  //Make a new object by replacing genre_ids from data with genres names from genres
  // exp :data.genre_ids = [12,28,16] + genres = [{id:12,name:'Action'},{id:28,name:'Drama'},{id:16,name:'Comedy'}] = data.genre_ids = ['Action','Drama','Comedy'] 

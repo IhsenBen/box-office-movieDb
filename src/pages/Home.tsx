@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import useFetch from '../Hooks/useFetch';
 import useData from '../Hooks/useData';
@@ -15,7 +15,7 @@ function Home() {
   const { state, handleClear } = useFetch();
 
   //to get Modified from useData 
-  const {topRatedMovies, sliderMovies, cardMovies} = useData();
+  const {sliderMovies, cardMovies} = useData();
 
 
   // Keep track of the activated genre to filter in Card
