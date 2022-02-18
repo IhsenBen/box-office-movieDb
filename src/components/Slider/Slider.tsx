@@ -38,11 +38,11 @@ export default function Slider(props: ISliderProps) {
       }}
       navigation={true}
       modules={[Parallax, Autoplay, Pagination, Navigation]}
-      className="mySwiper"
+      className="mySwiper bg-gray-50 px-10 md:px-20" 
     >
       {/* render a slide for each movie in the props sliderMovies */}
       {props.sliderMovies.map((movie: any) => (
-        <SwiperSlide key={movie.id} className="sliderContainer">
+        <SwiperSlide key={movie.id} className="sliderContainer  ">
           <div
             className="sliderImgC"
             data-swiper-parallax="-23%"

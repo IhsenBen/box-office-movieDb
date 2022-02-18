@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 
 export default function Card({ moviesCards }: any) {
   return (
-    <div className="container mx-auto p-10 md:p-20 grid lg:grid-cols-3 2xl:grid-cols-4 grid-cols-1 gap-y-10 gap-x-10 transform duration-500  ">
+    <div className="container  mx-auto p-10 md:p-20 grid lg:grid-cols-3 2xl:grid-cols-4 grid-cols-1 gap-y-10 gap-x-10 transform duration-500  ">
       {moviesCards.map((movie: any) => (
         <motion.div
           animate={{ opacity: 1 }}
@@ -28,16 +28,17 @@ export default function Card({ moviesCards }: any) {
             />
           </div>
           <div className="p-5 my-auto pb-12 ">
-            <h1 className="text-3xl font-semibold text-gray-700">
+            <h2 className="text-2xl font-semibold text-gray-700">
               {movie.title}
-            </h1>
+            </h2>
             <Rating
               className="m-3 align-left"
               ratingValue={0}
+              size={20}
               initialValue={Math.round(movie.vote_average / 2)}
               readonly={true}
             />
-            <p className="category flex flex-row">
+            <div className="category flex flex-row">
               {/* buttons for genres( if x < 2 genres = true buttons = 1 otherwise 2 buttons) */}
               {movie.genre_ids.length <= 2 ? (
                 <div className="flex flex-auto">
@@ -55,8 +56,8 @@ export default function Card({ moviesCards }: any) {
                   </button>
                 </div>
               )}
-            </p>
-            <p className="text-xl font-light leading-relaxed  ">
+            </div>
+            <p className="text-l font-light leading-relaxed  ">
               {movie.overview.slice(0, 120)}...
             </p>
           </div>

@@ -17,7 +17,11 @@ function Home() {
   // Keep track of the active genre to filter in Card
   const [activeGenre, setActiveGenre] = useState<String>('All');
   // To filter Data
-  const [filtred, setFiltred] = useState<any>([]);
+   const [filtred, setFiltred] = useState<Array<Object>>([])
+// wrap setFiltred in a useCallback to avoid the rerender of the component
+
+
+
   // Getting the states from the api call
   const { isLoading, isError, errorMsg } = state;
 

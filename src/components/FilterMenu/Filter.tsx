@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import './filter.css';
 
 export default function Filter({
@@ -12,6 +12,9 @@ export default function Filter({
   const categories = ['All', 'Action', 'Comedy', 'Animation']
 
 
+
+
+// need to improve this to avoid re-rendering and build error // maybe useCallback
   useEffect(() => {
     if (activeGenre === 'All') {
       setFiltered(cardMovies);
@@ -22,6 +25,8 @@ export default function Filter({
     );
     setFiltered(filtered);
   }, [activeGenre]);
+
+  
 
 
   return (
