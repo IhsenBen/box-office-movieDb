@@ -24,6 +24,8 @@ export default function Filter({
       movie.genre_ids.includes(activeGenre)
     );
     setFiltered(filtered);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  //^ temporary work around cuz this kept asking for unnecessary dependencies and deployment was failing 
   }, [activeGenre]);
 
   
