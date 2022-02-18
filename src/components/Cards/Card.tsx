@@ -1,4 +1,3 @@
-import * as React from 'react';
 import './card.css';
 
 // external component for stars rating
@@ -9,8 +8,6 @@ import { Rating } from 'react-simple-star-rating';
 
 //framer motion for animation
 import { motion } from 'framer-motion';
-
-// output category of each movies
 
 export default function Card({ moviesCards }: any) {
   return (
@@ -30,7 +27,6 @@ export default function Card({ moviesCards }: any) {
               alt="poster"
             />
           </div>
-
           <div className="p-5 my-auto pb-12 ">
             <h1 className="text-3xl font-semibold text-gray-700">
               {movie.title}

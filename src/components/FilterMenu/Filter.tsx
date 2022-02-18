@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import './filter.css';
 
 export default function Filter({
@@ -7,6 +7,11 @@ export default function Filter({
   activeGenre,
   setActiveGenre,
 }: any) {
+
+
+  const categories = ['All', 'Action', 'Comedy', 'Animation']
+
+
   useEffect(() => {
     if (activeGenre === 'All') {
       setFiltered(cardMovies);
@@ -18,32 +23,30 @@ export default function Filter({
     setFiltered(filtered);
   }, [activeGenre]);
 
+
   return (
     <div className="filter-container pt-10">
-      <button
-        className={activeGenre === 'All' ? 'active' : ''}
-        onClick={() => setActiveGenre('All')}
-      >
-        All
-      </button>
-      <button
-        className={activeGenre === 'Action' ? 'active' : ''}
-        onClick={() => setActiveGenre('Action')}
-      >
-        Action
-      </button>
-      <button
-        className={activeGenre === 'Comedy' ? 'active' : ''}
-        onClick={() => setActiveGenre('Comedy')}
-      >
-        Comedy
-      </button>
-      <button
-        className={activeGenre === 'Animation' ? 'active' : ''}
-        onClick={() => setActiveGenre('Animation')}
-      >
-        Animation
-      </button>
+      {categories.map((category: string) => (
+        <button
+          key={category}
+          className={
+            activeGenre === category ? 'active' : ''
+          }
+          onClick={() => {
+            if (activeGenre === category) {
+              setActiveGenre('All');
+            } else {
+              setActiveGenre(category);
+            }
+          }}
+        >
+          {category}
+        </button>
+      ))}
     </div>
   );
 }
+
+
+
+

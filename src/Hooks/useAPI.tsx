@@ -4,14 +4,13 @@ import axios from 'axios';
 // import API form .env.local to hide API_KEY
 const API_KEY: string = process.env.REACT_APP_MOVIES_API_KEY as string;
 
-const useFetch = () => {
+const useAPI = () => {
   const [state, setState] = useState<any>({
     isLoading: true,
     isError: false,
-    errorMsg:[],
+    errorMsg: [],
     data: [],
     genres: [],
-   
   });
 
   useEffect(() => {
@@ -42,13 +41,11 @@ const useFetch = () => {
           errorMsg: error.message,
           data: [],
           genres: [],
-          
         });
       }
     };
     fetchData();
   }, []);
-
   // fonction que j'exporte pour rest l'erreur avec l'objet
   const handleClear = () => {
     setState({
@@ -59,4 +56,4 @@ const useFetch = () => {
 
   return { state, handleClear };
 };
-export default useFetch;
+export default useAPI;

@@ -18,6 +18,8 @@ export interface ISliderProps {
   sliderMovies: any;
 }
 
+//need to make this more responsive
+
 export default function Slider(props: ISliderProps) {
   return (
     // Swiper contains params for the animation of the slider and
@@ -77,7 +79,6 @@ export default function Slider(props: ISliderProps) {
                     </button>
                   </div>
                 )}
-
                 <Rating
                   className="content-center mt-6"
                   ratingValue={0}
@@ -85,7 +86,6 @@ export default function Slider(props: ISliderProps) {
                   readonly={true}
                 />
               </div>
-
               <h2 data-swiper-parallax="-100" className=" text-xl text-left">
                 {/* slice for 120 characters max */}
                 {movie.overview.slice(0, 120)}...
