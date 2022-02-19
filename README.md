@@ -1,7 +1,7 @@
 # Getting Started with Create React App
 This is a little Project Made with the Movie Database API to keep track of the most popular movies and their average note.
 
-## � Live Preview �[Here](https://duckduckgo.com).
+## 🔌Live Preview [Here](https://box-office-app.netlify.app/).
 
 ## To do
 1. A responsive design for the Slider
