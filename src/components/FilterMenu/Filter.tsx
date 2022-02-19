@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import './filter.css';
 
 export default function Filter({
