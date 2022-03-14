@@ -11,7 +11,8 @@ export default function Filter({
 
 
   const categories = ['All', 'Action', 'Comedy', 'Animation']
-
+  
+ 
 
 
 
