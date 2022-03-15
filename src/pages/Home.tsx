@@ -3,26 +3,22 @@ import React, { useState } from 'react';
 import useMDBAPI from '../Hooks/useMDBAPI';
 import useSortMovies from '../Hooks/useSortMovies';
 
-import LoadingSpinner from '../components/loadingSpinner/LoadingSpinner';
-import Card from '../components/Cards/Card';
-import Filter from '../components/FilterMenu/Filter';
+// import LoadingSpinner from '../components/loadingSpinner/LoadingSpinner';
+// import Card from '../components/Cards/Card';
+// import Filter from '../components/FilterMenu/Filter';
 
 function Home() {
-  // To get the api call and the function that clear the Modal
-  const { mdbData, handleClearError } = useMDBAPI();
-  //to get Modified from use
-  const { filtredMovies, filterData } = useSortMovies();
+  
+   const {  filterData } = useSortMovies();
 
-  // Keep track of the active genre to filter in Card
-  const [activeGenre, setActiveGenre] = useState<String>('All');
-  // To filter Data
-   const [filtred, setFiltred] = useState<Array<Object>>([])
-
-
-    let Action = filterData(mdbData,'Action');
+    const {mdbData} = useMDBAPI();
+    const Action = filterData(mdbData.data,'');
+    console.log(Action);
 
   return (
     <React.Fragment>
+      <h1>Test </h1>
+      <p>{JSON.stringify(mdbData.data)}</p>
       <p>{JSON.stringify(Action)}</p>
 
     </React.Fragment>

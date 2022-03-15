@@ -27,7 +27,6 @@ const useMDBAPI = () => {
           errorMsg: [],
           data,
         });
-        console.log('mdbData', mdbData);
       } catch (error: any) {
         setMDBdata({
           isLoading: false,
