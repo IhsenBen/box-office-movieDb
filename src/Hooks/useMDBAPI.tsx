@@ -47,7 +47,6 @@ const useMDBAPI = () => {
     });
   };
 
-  
   return { mdbData, handleClearError };
 };
 export default useMDBAPI;

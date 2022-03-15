@@ -1,53 +1,25 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
 import './filter.css';
+type FilterProps = {
+  activeGenre: string;
+  setActiveGenre: (genre: string) => void;
+};
 
-export default function Filter({
-  cardMovies,
-  setFiltered,
-  activeGenre,
-  setActiveGenre,
-}: any) {
+export default function Filter({ activeGenre, setActiveGenre }: FilterProps) {
+  const categories = ['All', 'Action', 'Comedy', 'Animation'];
 
-
-  const categories = ['All', 'Action', 'Comedy', 'Animation']
-  
- 
-
-
-
-// need to improve this to avoid re-rendering and build error // maybe useCallback
-  useEffect(() => {
-    if (activeGenre === 'All') {
-      setFiltered(cardMovies);
-      return;
-    }
-    const filtered = cardMovies.filter((movie: any) =>
-      movie.genre_ids.includes(activeGenre)
-    );
-    setFiltered(filtered);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  //^ temporary work around cuz this kept asking for unnecessary dependencies and deployment was failing 
-  }, [activeGenre]);
-
-  
-
+  const setActiveGenreHandler = (e: any) => {
+    setActiveGenre(e.target.value);
+    console.log(e.target.value);
+  };
 
   return (
     <div className="filter-container pt-10">
       {categories.map((category: string) => (
         <button
           key={category}
-          className={
-            activeGenre === category ? 'active' : ''
-          }
-          onClick={() => {
-            if (activeGenre === category) {
-              setActiveGenre('All');
-            } else {
-              setActiveGenre(category);
-            }
-          }}
+          value={category}
+          className={activeGenre === category ? 'active' : ''}
+          onClick={setActiveGenreHandler}
         >
           {category}
         </button>
@@ -55,7 +27,3 @@ export default function Filter({
     </div>
   );
 }
-
-
-
-
