@@ -37,7 +37,7 @@ const useMDBAPI = () => {
       }
     };
     fetchPopularMovies();
-  }, []);
+  });
 
   const handleClearError = () => {
     setMDBdata({
