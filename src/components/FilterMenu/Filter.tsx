@@ -5,6 +5,7 @@ type FilterProps = {
 };
 
 export default function Filter({ activeGenre, setActiveGenre }: FilterProps) {
+  
   const categories = ['All', 'Action', 'Comedy', 'Animation'];
 
   const setActiveGenreHandler = (e: any) => {

@@ -27,7 +27,6 @@ function Home() {
           <div className="col-md-12">
             <Filter setActiveGenre={setActiveGenre} activeGenre={activeGenre} />
             <div className="cards-container">
-             
                <Backdrop open={isLoading} >
                 <CircularProgress color="inherit" />
                </Backdrop>
