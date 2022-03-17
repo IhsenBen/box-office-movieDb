@@ -14,11 +14,11 @@ export default function Filter({ activeGenre, setActiveGenre }: FilterProps) {
   };
 
   return (
-    <div className="filter-container pt-10">
+    <div className="filter-container">
       {categories.map((category: string) => (
         <button
           key={category}
-          value={category}
+          value={category.toLowerCase()}
           className={activeGenre === category ? 'active' : ''}
           onClick={setActiveGenreHandler}
         >
