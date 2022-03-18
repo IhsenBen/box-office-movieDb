@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cards from '../components/Cards/Cards';
 import Backdrop from '@mui/material/Backdrop';
 import Container from '@mui/material/Container';
@@ -11,6 +11,7 @@ import Filter from '../components/FilterMenu/Filter';
 
 function Home() {
   const [activeGenre, setActiveGenre] = useState<string>('All');
+ 
 
   const { filterData } = useSortMovies();
   const { mdbData } = useMDBAPI();
@@ -18,7 +19,10 @@ function Home() {
   const { data, isLoading, isError, errorMsg } = mdbData;
 
   const filtredMovies = filterData(data, activeGenre);
-  console.log(filtredMovies);
+  
+ 
+  
+  
 
   return (
  

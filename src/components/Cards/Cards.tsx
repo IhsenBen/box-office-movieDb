@@ -10,55 +10,16 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 
+import useSortMovies from '../../Hooks/useSortMovies';
+
 type Props = {
   movies: any;
 };
 
 const Cards = (props: Props) => {
-  const convertTogenre = (genre: number) => {
-    switch (genre) {
-      case 28:
-        return 'Action';
-      case 12:
-        return 'Adventure';
-      case 16:
-        return 'Animation';
-      case 35:
-        return 'Comedy';
-      case 80:
-        return 'Crime';
-      case 99:
-        return 'Documentary';
-      case 18:
-        return 'Drama';
-      case 10751:
-        return 'Family';
-      case 14:
-        return 'Fantasy';
-      case 36:
-        return 'History';
-      case 27:
-        return 'Horror';
-      case 10402:
-        return 'Music';
-      case 9648:
-        return 'Mystery';
-      case 10749:
-        return 'Romance';
-      case 878:
-        return 'Science Fiction';
-      case 10770:
-        return 'TV Movie';
-      case 53:
-        return 'Thriller';
-      case 10752:
-        return 'War';
-      case 37:
-        return 'Western';
-      default:
-        return 'Unknown';
-    }
-  };
+ 
+  const {getGenre} = useSortMovies();
+    
   return (
     <Grid item xs={12}>
       <Grid container justifyContent="center" spacing={4}>
@@ -98,20 +59,20 @@ const Cards = (props: Props) => {
                 <Stack
                   direction="row"
                   spacing={1}
-                  
                 >
                   <Chip
-                    label={convertTogenre(movie.genre_ids[0])}
+                    label={getGenre(movie.genre_ids[0])}
                     color="primary"
                     variant="outlined"
                     size="small"
                   />
-                  <Chip
-                    label={convertTogenre(movie.genre_ids[1])}
+                  {movie.genre_ids[1] ? <Chip
+                    label={getGenre(movie.genre_ids[1])}
                     size="small"
                     color="primary"
                     variant="outlined"
-                  />
+                  />: "" }
+                  
                 </Stack>
               </CardActions>
             </Card>
