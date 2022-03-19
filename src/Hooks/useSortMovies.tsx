@@ -50,7 +50,7 @@ const useSortMovies = () => {
   };
 
   const filterData = (data: any[], genre: string) => {
-    const genreID = getGenreID(genre);
+    const genreID = getGenre(genre);
 
     if (genreID === 420 || genreID === 'please enter a valid genre') {
       return data;

@@ -11,16 +11,18 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-
-type Props = {}
+type Props = {};
 
 const Navbar = (props: Props) => {
-    const pages = ['Wishlist', 'Top Rated', 'Upcoming'];
-    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+  const pages = ['Wishlist', 'Top Rated', 'Upcoming'];
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -58,9 +60,7 @@ const Navbar = (props: Props) => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
-            >
-             
-            </IconButton>
+            ></IconButton>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -138,8 +138,7 @@ const Navbar = (props: Props) => {
         </Toolbar>
       </Container>
     </AppBar>
-  )
+  );
 };
 
 export default Navbar;
-

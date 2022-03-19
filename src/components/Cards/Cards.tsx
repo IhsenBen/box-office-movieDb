@@ -1,5 +1,3 @@
-
-
 import { Card, CardActions } from '@mui/material';
 
 import Grid from '@mui/material/Grid';
@@ -17,9 +15,8 @@ type Props = {
 };
 
 const Cards = (props: Props) => {
- 
-  const {getGenre} = useSortMovies();
-    
+  const { getGenre } = useSortMovies();
+
   return (
     <Grid item xs={12}>
       <Grid container justifyContent="center" spacing={4}>
@@ -55,24 +52,24 @@ const Cards = (props: Props) => {
                   readOnly
                 />
               </CardContent>
-              <CardActions >
-                <Stack
-                  direction="row"
-                  spacing={1}
-                >
+              <CardActions>
+                <Stack direction="row" spacing={1}>
                   <Chip
                     label={getGenre(movie.genre_ids[0])}
                     color="primary"
                     variant="outlined"
                     size="small"
                   />
-                  {movie.genre_ids[1] ? <Chip
-                    label={getGenre(movie.genre_ids[1])}
-                    size="small"
-                    color="primary"
-                    variant="outlined"
-                  />: "" }
-                  
+                  {movie.genre_ids[1] ? (
+                    <Chip
+                      label={getGenre(movie.genre_ids[1])}
+                      size="small"
+                      color="primary"
+                      variant="outlined"
+                    />
+                  ) : (
+                    ''
+                  )}
                 </Stack>
               </CardActions>
             </Card>
