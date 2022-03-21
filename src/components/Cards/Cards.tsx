@@ -1,12 +1,5 @@
-import { Card, CardActions } from '@mui/material';
-
-import Grid from '@mui/material/Grid';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
-import Rating from '@mui/material/Rating';
+import { Card, CardActions, Grid, CardMedia, CardContent, Typography
+,Chip, Stack, Rating } from '@mui/material';
 
 import useSortMovies from '../../Hooks/useSortMovies';
 

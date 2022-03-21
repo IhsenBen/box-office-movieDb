@@ -15,13 +15,22 @@ function Home() {
 
   const { filterData } = useSortMovies();
 
-  const { mdbData } = useMDBAPI();
+  const { popMovies, topRatedMovies } = useMDBAPI();
 
-  const { data, isLoading, isError, errorMsg } = mdbData;
+  const { data, isLoading, isError, errorMsg } = popMovies;
+  // const {
+  //   data: topRatedData,
+  //   isLoading: topRatedLoading,
+  //   isError: topRatedError,
+  //   errorMsg: topRatedErrorMsg,
+  // } = topRatedMovies;
+  
+ 
 
   useEffect(() => {
     const filtredMovies = filterData(data, activeGenre);
     setMovies(filtredMovies);
+   
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeGenre, data]);
