@@ -2,15 +2,15 @@ import Navbar from './components/Navbar/Navbar';
 
 import Home from './pages/Home';
 // import Login from './pages/Login';
-// import Signup from './pages/Signup';
+import Signup from './pages/Signup';
 
 function App() {
   return (
     <div className="App bg-gray-50 ">
       <Navbar />
-      <Home />
+      {/* <Home /> */}
       {/* <Login /> */}
-      {/* <Signup /> */}
+      <Signup />
     </div>
   );
 }

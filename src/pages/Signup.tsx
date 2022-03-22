@@ -1,129 +1,112 @@
-// import { Box, Typography, TextField, Button } from '@mui/material';
-// import React, { Component } from 'react';
-// import {
-//   Formik,
-//   FormikHelpers,
-//   FormikProps,
-//   Form,
-//   Field,
-//   FieldProps,
-// } from 'formik';
-// import * as Yup from 'yup';
+import React from 'react';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import { Button, Box } from '@mui/material/';
 
+import FormikField from '../components/FormField/FormField';
 
 /*
 dosen't work yet, just wrote boilerplate code
 */
 
-// interface FormValues {
-//   username: string;
-//   email: string;
-//   password: string;
-//   confirmPassword: string;
-// }
+interface FormValues {
+  NickName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}
 
-// const validationSchema = Yup.object().shape({
-//   username: Yup.string()
-//     .min(3, 'Username must be at least 3 characters')
-//     .required('Username is required'),
-//   email: Yup.string()
-//     .email('Email must be a valid email')
-//     .required('Email is required'),
-//   password: Yup.string()
-//     .min(8, 'Password must be at least 8 characters')
-//     .required('Password is required'),
-//   confirmPassword: Yup.string()
-//     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-//     .required('Confirm Password is required'),
-// });
+const initialValues: FormValues = {
+  NickName: '',
+  email: '',
+  password: '',
+  passwordConfirm: '',
+};
 
-// const Signup = () => {
- 
+const lowercaseRegex = /(?=.*[a-z])/;
+const uppercaseRegex = /(?=.*[A-Z])/;
+const numericRegex = /(?=.*[0-9])/;
 
-//   return (
-//     <Formik
-//       initialValues={{
-//         username: '',
-//         email: '',
-//         password: '',
-//         confirmPassword: '',
-//       }}
-//       // validationSchema={validationSchema}
-//       onSubmit={(values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
-//         setTimeout(() => {
-//           // alert(JSON.stringify(values, null, 2));
-//           console.log(values);
-//           setSubmitting(false);
-//         }, 500);
-//       }}
-//     >
-//       {({ isSubmitting }: FormikProps<FormValues>) => (
-//         <Form>
-//           <Box
-//             display="flex"
-//             flexDirection="column"
-//             alignItems="center"
-//             justifyContent="center"
-//             p={2}
-//             m={2}
-//           >
-//             <Field
-//               name="username"
-//               placeholder="Username"
-//               component={TextField}
-//               type="text"
-//               margin="normal"
-//               variant="outlined"
-//               fullWidth
-//               required
-//             />
-//             <Field
-//               name="email"
-//               placeholder="Email"
-//               component={TextField}
-//               type="email"
-//               margin="normal"
-//               variant="outlined"
-//               fullWidth
-//               required
-//             />
-//             <Field
-//               name="password"
-//               placeholder="Password"
-//               component={TextField}
-//               type="password"
-//               margin="normal"
-//               variant="outlined"
-//               fullWidth
-//               required
-//             />
-//             <Field
-//               name="confirmPassword"
-//               placeholder="Confirm Password"
-//               component={TextField}
-//               type="password"
-//               margin="normal"
-//               variant="outlined"
-//               fullWidth
-//               required
-//             />
-//             <Button
-//               type="submit"
-//               variant="contained"
-//               color="primary"
-//               disabled={isSubmitting}
-//             >
-//               Sign Up
-//             </Button>
-//           </Box>
-//         </Form>
-//       )}
-//     </Formik>
-//   );
-// };
+const mockEmails = ['test1@gmail.com', 'test2@aol.com', 'test3@live.com'];
 
-// export default Signup;
-  
+const validationSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(3, 'Username must be at least 3 characters')
+    .required('Username is required'),
+  email: Yup.string()
+    .email('Email must be a valid email')
+    .notOneOf(mockEmails, 'Email is already in use')
+    .required('Email is required'),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters')
+    .matches(lowercaseRegex, 'Password must contain a lowercase letter')
+    .matches(uppercaseRegex, 'Password must contain an uppercase letter')
+    .matches(numericRegex, 'Password must contain a number')
+    .required('Password is required'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Confirm Password is required'),
+});
 
+const Signup: React.FC = () => {
+  const handleSubmit = (values: FormValues): void => {
+    console.log(values);
+  };
 
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {(props) => (
+        <Form>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            p={2}
+            m={2}
+          >
+            <FormikField
+              name="NickName"
+              label="NickName"
+              type="text"
+              required={true}
+            />
+            <FormikField
+              name="email"
+              label="Email"
+              type="email"
+              required={true}
+            />
+            <FormikField
+              name="password"
+              label="Password"
+              type="password"
+              required={true}
+            />
+            <FormikField
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                required={true}
+            />
 
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={ !props.isValid || !props.dirty}
+            >
+              Sign Up
+            </Button>
+          </Box>
+        </Form>
+      )}
+    </Formik>
+  );
+};
+
+export default Signup;
