@@ -1,7 +1,6 @@
-import React from "react";
-import { ErrorMessage, Field } from "formik";
-import TextField from '@mui/material/TextField';
-
+import React from 'react';
+import { ErrorMessage, Field } from 'formik';
+import {TextField} from '@mui/material';
 
 
 interface FormikFieldProps {
@@ -11,9 +10,20 @@ interface FormikFieldProps {
   required?: boolean;
 }
 
-const FormikField: React.FC<FormikFieldProps> = ({ name, label, type = "text", required = false}) => {
+const FormikField: React.FC<FormikFieldProps> = ({
+  name,
+  label,
+  type = 'text',
+  required = false,
+}) => {
   return (
-    <div className="FormikField">
+    <div style={
+      {
+        marginTop: '20px',
+        marginBottom: '20px',
+        width: '50vw',
+      }
+    } >
       <Field
         required={required}
         autoComplete="off"
