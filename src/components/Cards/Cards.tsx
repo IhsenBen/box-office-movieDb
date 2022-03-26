@@ -1,6 +1,14 @@
-import { Card, CardActions, Grid, CardMedia, CardContent, Typography
-,Chip, Stack, Rating } from '@mui/material';
-
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Chip,
+  Grid,
+  Rating,
+  Stack,
+  Typography,
+} from '@mui/material';
 import useSortMovies from '../../Hooks/useSortMovies';
 
 type Props = {

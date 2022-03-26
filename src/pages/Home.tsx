@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Cards from '../components/Cards/Cards';
 import Backdrop from '@mui/material/Backdrop';
-import Container from '@mui/material/Container';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import Container from '@mui/material/Container';
+import { useEffect, useState } from 'react';
+import Cards from '../components/Cards/Cards';
+import Filter from '../components/FilterMenu/Filter';
 import useMDBAPI from '../Hooks/useMDBAPI';
 import useSortMovies from '../Hooks/useSortMovies';
-
-import Filter from '../components/FilterMenu/Filter';
 
 function Home() {
   const [activeGenre, setActiveGenre] = useState<string>('All');
@@ -15,23 +13,15 @@ function Home() {
 
   const { filterData } = useSortMovies();
 
-  const { popMovies, topRatedMovies } = useMDBAPI();
+  const { popMovies } = useMDBAPI();
 
   const { data, isLoading, isError, errorMsg } = popMovies;
-  // const {
-  //   data: topRatedData,
-  //   isLoading: topRatedLoading,
-  //   isError: topRatedError,
-  //   errorMsg: topRatedErrorMsg,
-  // } = topRatedMovies;
-  
- 
 
   useEffect(() => {
     const filtredMovies = filterData(data, activeGenre);
     setMovies(filtredMovies);
-   
-
+    /*disabled tsx exhaustive deps cuz this is messing with deployement and 
+     the asked dependecies would cause a memory leak */
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeGenre, data]);
 

@@ -1,21 +1,22 @@
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Link,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+import { Link as RouterLink } from 'react-router-dom';
 
-type Props = {};
-
-const Navbar = (props: Props) => {
-  const pages = ['Wishlist', 'Top Rated', 'Upcoming'];
-  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const Navbar = () => {
+  const pages = ['Popular', 'Top Rated', 'Watchlist', 'Favorites'];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -40,17 +41,17 @@ const Navbar = (props: Props) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" enableColorOnDark>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+          <Button
+            component={RouterLink}
+            color="inherit"
+            sx={{ mr: 25, display: { xs: 'none', md: 'flex' } }}
+            to="/"
           >
-            LOGO
-          </Typography>
+            Logo
+          </Button>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -92,7 +93,7 @@ const Navbar = (props: Props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            LOGOMobile
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -128,11 +129,27 @@ const Navbar = (props: Props) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign={'center'}>
+                  <Link component={RouterLink} to="/" underline="none">
+                    My Profile
+                  </Link>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign={'center'}>
+                  <Link component={RouterLink} to="/" underline="none">
+                    Watchlist
+                  </Link>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">
+                  <Link component={RouterLink} to="/login" underline="none">
+                    Log-out
+                  </Link>
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

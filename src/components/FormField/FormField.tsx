@@ -1,7 +1,6 @@
-import React from 'react';
+import { TextField } from '@mui/material';
 import { ErrorMessage, Field } from 'formik';
-import {TextField} from '@mui/material';
-
+import React from 'react';
 
 interface FormikFieldProps {
   name: string;
@@ -17,13 +16,13 @@ const FormikField: React.FC<FormikFieldProps> = ({
   required = false,
 }) => {
   return (
-    <div style={
-      {
+    <div
+      style={{
         marginTop: '20px',
         marginBottom: '20px',
         width: '50vw',
-      }
-    } >
+      }}
+    >
       <Field
         required={required}
         autoComplete="off"

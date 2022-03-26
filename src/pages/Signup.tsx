@@ -1,14 +1,8 @@
-import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import { Button, Grid, Typography } from '@mui/material/';
-
+import { Form, Formik } from 'formik';
+import React from 'react';
+import * as Yup from 'yup';
 import FormikField from '../components/FormField/FormField';
-
-
-/*
-dosen't work yet, just wrote boilerplate code
-*/
 
 interface FormValues {
   NickName: string;

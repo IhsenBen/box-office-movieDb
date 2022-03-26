@@ -1,8 +1,7 @@
-import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import { Button, Grid, Typography } from '@mui/material/';
-
+import { Form, Formik } from 'formik';
+import React from 'react';
+import * as Yup from 'yup';
 import FormikField from '../components/FormField/FormField';
 
 interface LogInValues {
@@ -68,12 +67,12 @@ const LogIn: React.FC = () => {
                   />
                 </Grid>
 
-                <Grid item xs={12} >
+                <Grid item xs={12}>
                   <Button
                     type="submit"
                     variant="contained"
                     color="primary"
-                    disabled={!props.isValid || !props.dirty} 
+                    disabled={!props.isValid || !props.dirty}
                   >
                     Sign Up
                   </Button>
