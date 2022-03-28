@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { Stack, TextField } from '@mui/material';
 import { ErrorMessage, Field } from 'formik';
 import React from 'react';
 
@@ -16,11 +16,15 @@ const FormikField: React.FC<FormikFieldProps> = ({
   required = false,
 }) => {
   return (
-    <div
-      style={{
-        marginTop: '20px',
-        marginBottom: '20px',
-        width: '50vw',
+    <Stack
+      sx={{
+        width: 250,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        py: 2,
+
       }}
     >
       <Field
@@ -29,11 +33,11 @@ const FormikField: React.FC<FormikFieldProps> = ({
         as={TextField}
         label={label}
         name={name}
-        fullWidth
         type={type}
+        fullWidth
         helperText={<ErrorMessage name={name} />}
       />
-    </div>
+    </Stack>
   );
 };
 

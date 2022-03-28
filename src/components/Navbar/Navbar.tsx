@@ -160,6 +160,13 @@ const Navbar = () => {
                   </Link>
                 </Typography>
               </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">
+                  <Link component={RouterLink} to="/signup" underline="none">
+                    Sign Up
+                  </Link>
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

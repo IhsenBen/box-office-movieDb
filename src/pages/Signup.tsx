@@ -1,4 +1,4 @@
-import { Button, Grid, Typography, Stack } from '@mui/material/';
+import { Button, Grid, Stack, Typography } from '@mui/material/';
 import { Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
@@ -54,24 +54,28 @@ const Signup: React.FC = () => {
       <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
         Sign-up
       </Typography>
-      <Grid container justifyContent="center" spacing={4}>
-      <Formik
-        onSubmit={handleSubmit}
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-      >
-        {(props) => {
-          return (
-            <Form>
-              <Grid
-                container
-                sx={{
-                  px: '150px',
-                  py: '50px',
-                }}
-              >
-                <Grid container spacing={1}>
-                  <Grid item xs={12} sm={12}>
+      <Grid container justifyContent="center" spacing={2}>
+        <Formik
+          onSubmit={handleSubmit}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+        >
+          {(props) => {
+            return (
+              <Form>
+                <Grid
+                  container
+                  justifyContent="center"
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    px: '150px',
+                    py: '50px',
+                  }}
+                >
+                  <Grid item>
                     <FormikField
                       name="NickName"
                       label="NickName"
@@ -79,7 +83,8 @@ const Signup: React.FC = () => {
                       required={true}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={12}>
+
+                  <Grid item>
                     <FormikField
                       name="email"
                       label="Email"
@@ -87,7 +92,8 @@ const Signup: React.FC = () => {
                       required={true}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={12}>
+
+                  <Grid item>
                     <FormikField
                       name="password"
                       label="Password"
@@ -95,7 +101,7 @@ const Signup: React.FC = () => {
                       required={true}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={8}>
+                  <Grid item>
                     <FormikField
                       name="passwordConfirm"
                       label="Confirm Password"
@@ -103,7 +109,7 @@ const Signup: React.FC = () => {
                       required={true}
                     />
                   </Grid>
-                  <Grid item xs={7} sx={{ textAlign: 'right' }}>
+                  <Grid container justifyContent="flex-end">
                     <Button
                       type="submit"
                       variant="contained"
@@ -114,28 +120,27 @@ const Signup: React.FC = () => {
                     </Button>
                   </Grid>
                 </Grid>
-              </Grid>
-            </Form>
-          );
-        }}
-      </Formik>
-      </Grid>
-      <Grid container justifyContent="center" spacing={4}>
-      <Stack sx={{ width: 150, textAlign: 'center' }}>
-        <Typography variant="body2" gutterBottom sx={{ textAlign: 'center' }}>
-           You have an account?
-        </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          href="/login"
-          sx={{ textTransform: 'none', width: '100%' }}
-        >
-          Log in
-        </Button>
-      </Stack>
+              </Form>
+            );
+          }}
+        </Formik>
       </Grid>
 
+      <Grid container justifyContent="center" spacing={4}>
+        <Stack sx={{ width: 150, textAlign: 'center' }}>
+          <Typography variant="body2" gutterBottom sx={{ textAlign: 'center' }}>
+            You have an account?
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            href="/login"
+            sx={{ textTransform: 'none', width: '100%' }}
+          >
+            Log in
+          </Button>
+        </Stack>
+      </Grid>
     </div>
   );
 };
