@@ -16,7 +16,7 @@ import * as React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Navbar = () => {
-  const pages = ['Popular', 'Top Rated', 'Watchlist', 'Favorites'];
+  const pages = ['Popular', 'TopRated', 'Watchlist', 'Favorites'];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -82,7 +82,15 @@ const Navbar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                    <Link
+                      component={RouterLink}
+                      to={`/${page}`}
+                      underline="none"
+                    >
+                      {page}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -101,6 +109,8 @@ const Navbar = () => {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                component={RouterLink}
+                to={`/${page}`}
               >
                 {page}
               </Button>

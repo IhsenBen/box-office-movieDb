@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@mui/material/';
+import { Button, Grid, Stack, Typography } from '@mui/material/';
 import { Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
@@ -30,6 +30,7 @@ const LogIn: React.FC = () => {
       <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
         Log In
       </Typography>
+      <Grid container justifyContent="center" spacing={4}>
       <Formik
         onSubmit={handleSubmit}
         initialValues={initialLogIn}
@@ -82,6 +83,22 @@ const LogIn: React.FC = () => {
           );
         }}
       </Formik>
+      </Grid>
+      <Grid container justifyContent="center" spacing={4}>
+      <Stack sx={{ width: 150, textAlign: 'center' }}>
+        <Typography variant="body2" gutterBottom sx={{ textAlign: 'center' }}>
+          Don't have an account?
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          href="/signup"
+          sx={{ textTransform: 'none', width: '100%' }}
+        >
+          Sign Up
+        </Button>
+      </Stack>
+      </Grid>
     </div>
   );
 };

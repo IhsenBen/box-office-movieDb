@@ -11,15 +11,9 @@ const useMDBAPI = () => {
     data: [],
   });
 
-  // const [topRatedMovies, setTopRatedMovies] = useState<any>({
-  //   isLoading: true,
-  //   isError: false,
-  //   errorMsg: [],
-  //   data: [],
-  // });
 
   const API_LINK_POPULAR = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&sort_by=popularity.desc&language=en-US&page=`;
-  // const API_LINK_TOP_RATED = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=`;
+ 
 
   
 
@@ -47,31 +41,8 @@ const useMDBAPI = () => {
       }
     };
     
-    // const fetchTopRatedMovies = async () => {
-    //   try {
-    //     const [pageOne, Pagetwo] = await Promise.all([
-    //       axios.get(`${API_LINK_TOP_RATED}1`),
-    //       axios.get(`${API_LINK_TOP_RATED}2`),
-    //     ]);
-    //     const data = [...Pagetwo.data.results, ...pageOne.data.results];
-    //     setTopRatedMovies({
-    //       isLoading: false,
-    //       isError: false,
-    //       errorMsg: [],
-    //       data,
-    //     });
-    //   } catch (error: any) {
-    //     setTopRatedMovies({
-    //       isLoading: false,
-    //       isError: true,
-    //       errorMsg: [error.message],
-    //       data: [],
-    //     });
-    //   }
-      
-    // };
     fetchPopularMovies();
-    // fetchTopRatedMovies();
+
   });
 
 

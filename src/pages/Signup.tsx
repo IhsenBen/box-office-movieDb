@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@mui/material/';
+import { Button, Grid, Typography, Stack } from '@mui/material/';
 import { Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
@@ -54,6 +54,7 @@ const Signup: React.FC = () => {
       <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
         Sign-up
       </Typography>
+      <Grid container justifyContent="center" spacing={4}>
       <Formik
         onSubmit={handleSubmit}
         initialValues={initialValues}
@@ -69,8 +70,8 @@ const Signup: React.FC = () => {
                   py: '50px',
                 }}
               >
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
+                <Grid container spacing={1}>
+                  <Grid item xs={12} sm={12}>
                     <FormikField
                       name="NickName"
                       label="NickName"
@@ -78,7 +79,7 @@ const Signup: React.FC = () => {
                       required={true}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={12}>
                     <FormikField
                       name="email"
                       label="Email"
@@ -86,7 +87,7 @@ const Signup: React.FC = () => {
                       required={true}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={12}>
                     <FormikField
                       name="password"
                       label="Password"
@@ -94,7 +95,7 @@ const Signup: React.FC = () => {
                       required={true}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={8}>
                     <FormikField
                       name="passwordConfirm"
                       label="Confirm Password"
@@ -102,7 +103,7 @@ const Signup: React.FC = () => {
                       required={true}
                     />
                   </Grid>
-                  <Grid item xs={12} sx={{ textAlign: 'right' }}>
+                  <Grid item xs={7} sx={{ textAlign: 'right' }}>
                     <Button
                       type="submit"
                       variant="contained"
@@ -118,6 +119,23 @@ const Signup: React.FC = () => {
           );
         }}
       </Formik>
+      </Grid>
+      <Grid container justifyContent="center" spacing={4}>
+      <Stack sx={{ width: 150, textAlign: 'center' }}>
+        <Typography variant="body2" gutterBottom sx={{ textAlign: 'center' }}>
+           You have an account?
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          href="/login"
+          sx={{ textTransform: 'none', width: '100%' }}
+        >
+          Log in
+        </Button>
+      </Stack>
+      </Grid>
+
     </div>
   );
 };

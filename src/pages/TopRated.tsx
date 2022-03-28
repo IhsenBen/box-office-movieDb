@@ -4,18 +4,18 @@ import Container from '@mui/material/Container';
 import { useEffect, useState } from 'react';
 import Cards from '../components/Cards/Cards';
 import Filter from '../components/FilterMenu/Filter';
-import useMDBAPI from '../Hooks/useMDBAPI';
+import useTopRated from '../Hooks/useTopRated';
 import useSortMovies from '../Hooks/useSortMovies';
 
-function Home() {
+function TopRated() {
   const [activeGenre, setActiveGenre] = useState<string>('All');
   const [movies, setMovies] = useState<any>([]);
 
   const { filterData } = useSortMovies();
 
-  const { popMovies } = useMDBAPI();
+  const { topRatedMovies} = useTopRated();
 
-  const { data, isLoading, isError, errorMsg } = popMovies;
+  const { data, isLoading, isError, errorMsg } = topRatedMovies;
 
   useEffect(() => {
     const filtredMovies = filterData(data, activeGenre);
@@ -43,4 +43,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default TopRated;
