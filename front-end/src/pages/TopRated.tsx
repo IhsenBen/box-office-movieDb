@@ -4,17 +4,15 @@ import Container from '@mui/material/Container';
 import { useEffect, useState } from 'react';
 import Cards from '../components/Cards/Cards';
 import Filter from '../components/FilterMenu/Filter';
-import useTopRated from '../Hooks/useTopRated';
 import useSortMovies from '../Hooks/useSortMovies';
+import useTopRated from '../Hooks/useTopRated';
 
 function TopRated() {
   const [activeGenre, setActiveGenre] = useState<string>('All');
   const [movies, setMovies] = useState<any>([]);
-
   const { filterData } = useSortMovies();
 
-  const { topRatedMovies} = useTopRated();
-
+  const { topRatedMovies } = useTopRated();
   const { data, isLoading, isError, errorMsg } = topRatedMovies;
 
   useEffect(() => {

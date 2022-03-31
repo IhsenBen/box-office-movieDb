@@ -38,7 +38,7 @@ const useMDBAPI = () => {
     };
 
     fetchTopRatedMovies();
-  });
+  },[API_LINK_TOP_RATED]);
 
   const handleClearError = () => {
     topRatedMovies({
