@@ -3,7 +3,7 @@ import express from "express";
 import { ApolloServer, gql } from "apollo-server-express";
 
 // 1
-const startServer = async () => { 
+const startServer = async () => {
 
   // 2
   const app = express()

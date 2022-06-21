@@ -1,5 +1,8 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+//this is the is db model written in a 'prisma' way
+// run migrate after each design change
+
+//note to self: prisma don't support optional lists but they can be empty when creating a new one :)
+
 
 generator client {
   provider = "prisma-client-js"
@@ -15,6 +18,7 @@ enum Role {
   USER
 }
 
+
 model User {
   id    Int    @id @default(autoincrement())
   userName  String
@@ -22,11 +26,13 @@ model User {
   password String
   role Role @default(USER)
   reviews Review[]
+  reviewComments ReviewComment[]
   profile Profile?
   Watchlist WatchList?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 
 model Profile {
   id    Int    @id @default(autoincrement())
@@ -34,31 +40,43 @@ model Profile {
   userId Int
   favoriteMovies String[]
   watchedMovies String[]
-  bio String
-  socialLinks String
+  bio String?
+  socialLinks String[]
 }
 
-//  don't need to define a movie model beacause I'm using the movie model from 
-//  the movie-api with movies Id
 
 model Review {
   id    Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
   movieId Int
-  title String
-  content String
   rating Int
-  author     User       @relation(fields: [authorId], references: [id])
-  authorId Int
+  comment String?
+  reviewComments ReviewComment[]
+  likedBy Int[]
+  dislikedBy Int[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model ReviewComment{
+  id Int @id @default(autoincrement())
+  review Review @relation(fields: [reviewId], references: [id])
+  user  User   @relation(fields: [authorId], references: [id])
+  reviewId Int
+  authorId Int
+  comment String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 
 //model where each user can have a WatchList with many movies
 model WatchList {
   id Int @id @default(autoincrement())
   user   User   @relation(fields: [userId], references: [id])
   userId Int
-  movieId Int
+  movieId String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

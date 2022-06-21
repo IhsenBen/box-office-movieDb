@@ -1,14 +1,29 @@
 version: '3.8'
 services:
-  postgres:
+  db:
     image: postgres:10.3
+    container_name: local_db
     restart: always
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=tommywiseau
-    volumes:
-      - postgres:/var/lib/postgresql/data
     ports:
-      - '5432:5432'
+      - '54320:5432'
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - '5050:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: the@ro.om
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
 volumes:
-  postgres:
+  local_pgdata:
+  pgadmin-data:
