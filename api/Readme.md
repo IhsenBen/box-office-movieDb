@@ -17,7 +17,7 @@
 
 ##  GraphQL Code Generator
 
-I'm using [GraphQL Code Generator](https://www.graphql-code-generator.com/) for type checking with Typescript, this solution helps tremendously with graphql typdef, the only con side is you need to update the typed files each time you modifiy the typdefs of your modules by runing
+I'm using [GraphQL Code Generator](https://www.graphql-code-generator.com/) for type checking with Typescript, this solution helps tremendously with graphql typdef, the only con side is you need to update the typed files each time you modifiy the typdefs of your modules by running
 
     npm run generate
 
