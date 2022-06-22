@@ -15,7 +15,7 @@ https://github.com/keonik/prisma-erd-generator
 
  npx prisma generate
 
- to update automated generated types after the updating typedefs:
+ to update automated generated types after updating typedefs:
  
  npm run generate
 
