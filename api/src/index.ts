@@ -2,7 +2,6 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { createServer } from 'http';
 import { application } from './graphql/modulesLoder';
-const { prisma } = require('../prisma/client');
 
 const startServer = async () => {
   const app = express();

@@ -14,3 +14,9 @@ to generate a new ERD:
 https://github.com/keonik/prisma-erd-generator
 
  npx prisma generate
+
+ to update automated generated types after the updating typedefs:
+ 
+ npm run generate
+
+( this will overwrite all previous types as I mentioned on the yaml file)
