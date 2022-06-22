@@ -1,47 +1,30 @@
-import { createServer } from "http";
-import express from "express";
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
+import { createServer } from 'http';
+import { application } from './graphql/modulesLoder';
+const { prisma } = require('../prisma/client');
 
-// 1
 const startServer = async () => {
+  const app = express();
+  const httpServer = createServer(app);
 
-  // 2
-  const app = express()
-  const httpServer = createServer(app)
+  //create a schema given the loaded modules in modulesLoder
+  const schema = application.createSchemaForApollo();
 
-  // 3
-  const typeDefs = gql`
-    type Query {
-      hello: String
-    }
-  `;
+  const server = new ApolloServer({
+    schema,
+  });
 
-  // 4
-  const resolvers = {
-    Query: {
-      hello: () => 'Hello world!',
-    },
-  };
+  await server.start();
 
-  // 5
-  const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
-  })
+  server.applyMiddleware({
+    app,
+    path: '/api',
+  });
 
-  // 6
-  await apolloServer.start()
-
-  // 7
-  apolloServer.applyMiddleware({
-      app,
-      path: '/api'
-  })
-
-  // 8
   httpServer.listen({ port: process.env.PORT || 4000 }, () =>
-    console.log(`Server listening on localhost:4000${apolloServer.graphqlPath}`)
-  )
-}
+    console.log(`✨Server listening on localhost:4000${server.graphqlPath}✨`)
+  );
+};
 
-startServer()
+startServer();

@@ -9,3 +9,8 @@ to start the database localy with pgadmin:
 3- connect the pgadmin with the credentials on the yml file
 4- use the postgres db credentials on the yml file to add the server
 
+to generate a new ERD:
+
+https://github.com/keonik/prisma-erd-generator
+
+ npx prisma generate
