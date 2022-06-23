@@ -1,5 +1,6 @@
 import { createModule, gql } from 'graphql-modules';
 import { UserModule } from './generated-types/module-types';
+var bcrypt = require('bcryptjs');
 const { UserInputError } = require('apollo-server-express');
 const { prisma } = require('../../../../prisma/client');
 
@@ -27,20 +28,34 @@ const usersResolver: UserModule.Resolvers = {
   Mutation: {
     // create a new user
     createUser: async (_, { input }) => {
-      const user = await prisma.user.create({
-        data: {
-          ...input,
-        },
-      });
-      //check if user exists ( findUnique don't work in this case but count works -> return an interger)
+      //check if user exists ( findUnique don't work in this case but count works -> return an Integer)
       const userExists = await prisma.user.count({
-        where: {
-          userName: input.userName,
-          email: input.email,
-        },
+        OR: [{ email: input.email }, { username: input.userName }],
       });
       if (userExists) {
         throw new UserInputError('This User already exists');
+      }
+      const user = await prisma.user.create({
+        data: {
+          email: input.email,
+          username: input.userName,
+          password: await bcrypt.hash(input.password, 10)
+        },
+      });
+      return user;
+    },
+    loginUser: async (_, { input }) => {
+      let user
+      try {
+        user = await prisma.user.findUnique({
+          where: { email: input.email },
+        });
+      } catch (error) {
+        throw new UserInputError('User not found');
+      }
+      const isValid = await bcrypt.compare(input.password, user.password);
+      if (!isValid) {
+        throw new UserInputError('Invalid password');
       }
       return user;
     },
@@ -68,16 +83,17 @@ const usersResolver: UserModule.Resolvers = {
       const user = await prisma.user.delete({
         where: { id: Number(id) },
       });
-   
+
       return user;
-    }
-  }
+    },
+  },
 };
 
 export const usersModel = createModule({
   id: 'users',
   dirname: __dirname,
   typeDefs: gql`
+
     input UserInput {
       userName: String
       password: String
@@ -91,15 +107,19 @@ export const usersModel = createModule({
       password: String
       email: String
       role: String
+      createdAt: String
     }
 
+   
+
     type Query {
-      user(id: ID!): User
-      users: [User]
+      users:[User]
+      user(id: ID): User
     }
 
     type Mutation {
       createUser(input: UserInput!): User
+      loginUser(input: UserInput!): User
       updateUser(input: UserInput!): User
       deleteUser(id: ID!): User
     }

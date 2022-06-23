@@ -3,9 +3,9 @@ import * as Types from "../../../generated-types/graphql";
 import * as gm from "graphql-modules";
 export namespace UserModule {
   interface DefinedFields {
-    User: 'id' | 'userName' | 'password' | 'email' | 'role';
-    Query: 'user' | 'users';
-    Mutation: 'createUser' | 'updateUser' | 'deleteUser';
+    User: 'id' | 'userName' | 'password' | 'email' | 'role' | 'createdAt';
+    Query: 'users' | 'user';
+    Mutation: 'createUser' | 'loginUser' | 'updateUser' | 'deleteUser';
   };
   
   interface DefinedInputFields {
@@ -38,15 +38,17 @@ export namespace UserModule {
       password?: gm.Middleware[];
       email?: gm.Middleware[];
       role?: gm.Middleware[];
+      createdAt?: gm.Middleware[];
     };
     Query?: {
       '*'?: gm.Middleware[];
-      user?: gm.Middleware[];
       users?: gm.Middleware[];
+      user?: gm.Middleware[];
     };
     Mutation?: {
       '*'?: gm.Middleware[];
       createUser?: gm.Middleware[];
+      loginUser?: gm.Middleware[];
       updateUser?: gm.Middleware[];
       deleteUser?: gm.Middleware[];
     };
